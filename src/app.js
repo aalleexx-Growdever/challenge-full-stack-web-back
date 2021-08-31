@@ -1,8 +1,8 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import routers from "./app/routers";
-import "./database";
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import routers from './app/routers';
+import './database';
 
 class App {
   constructor() {
@@ -18,7 +18,7 @@ class App {
     this.server.use(cors());
 
     dotenv.config({
-      path: process.env.NODE_ENV === "test" ? "./../.env.test" : "./../.env",
+      path: process.env.NODE_ENV === 'test' ? './../.env.test' : './../.env',
     });
   }
 
