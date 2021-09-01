@@ -33,7 +33,7 @@ module.exports = {
         },
         password_hash: {
           type: Sequelize.DataTypes.STRING,
-          allowNUll: false,
+          allowNull: false,
         },
         created_at: {
           type: Sequelize.DataTypes.DATE,
@@ -50,7 +50,7 @@ module.exports = {
     );
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async queryInterface => {
     await queryInterface.dropTable({
       tableName: 'users',
       schema: 'challenge',

@@ -2,7 +2,7 @@ import Sequelize, { Model } from 'sequelize';
 import bcrypt from 'bcryptjs';
 
 class User extends Model {
-  static intit(sequelize) {
+  static init(sequelize) {
     super.init(
       {
         id: {
@@ -38,7 +38,7 @@ class User extends Model {
         },
         password_hash: {
           type: Sequelize.DataTypes.STRING,
-          allowNUll: false,
+          allowNull: false,
         },
       },
       {
