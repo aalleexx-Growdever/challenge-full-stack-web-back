@@ -42,7 +42,7 @@ class RoleController {
 
   async show(req, resp) {
     try {
-      const { id } = req.params;
+      const id = parseInt(req.params.id, 10);
 
       const role = await Role.findByPk(id);
 
