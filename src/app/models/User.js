@@ -38,7 +38,6 @@ class User extends Model {
         },
         password_hash: {
           type: Sequelize.DataTypes.STRING,
-          allowNull: false,
         },
       },
       {
@@ -70,9 +69,7 @@ class User extends Model {
   }
 
   static parseConditions(data) {
-    const { name } = data;
-    const { cpf } = data;
-    const { role } = data;
+    const { name, cpf, email, role } = data;
 
     const conditions = {};
 
@@ -84,6 +81,9 @@ class User extends Model {
     }
     if (role) {
       conditions.role = role;
+    }
+    if (email) {
+      conditions.email = email;
     }
 
     return { conditions };

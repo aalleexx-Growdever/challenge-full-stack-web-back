@@ -33,7 +33,6 @@ module.exports = {
         },
         password_hash: {
           type: Sequelize.DataTypes.STRING,
-          allowNull: false,
         },
         created_at: {
           type: Sequelize.DataTypes.DATE,
