@@ -345,7 +345,6 @@ describe('users', () => {
       expect.assertions(1);
 
       const response = await request(app).delete('/users/1');
-      console.log('========== response delete 1: ', response.body);
 
       expect(response.status).toBe(204);
     });
