@@ -20,8 +20,20 @@ async function verifyData(req, resp, next) {
       );
     }
 
+    const emailExists = await Student.findOne({ where: { email } });
+
+    if (emailExists) {
+      throw Error('Email já cadastrado.');
+    }
+
     if (!parseCPF(cpf)) {
       throw Error('Não foi possível validar os dados. Verifique o campo cpf.');
+    }
+
+    const cpfExists = await Student.findOne({ where: { cpf } });
+
+    if (cpfExists) {
+      throw Error('CPF já cadastrado.');
     }
   } catch (error) {
     const response = ApiResult.parseError(

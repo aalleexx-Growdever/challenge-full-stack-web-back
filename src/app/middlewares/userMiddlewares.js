@@ -20,6 +20,12 @@ async function verifyData(req, resp, next) {
       );
     }
 
+    const emailExists = await User.findOne({ where: { email } });
+
+    if (emailExists) {
+      throw Error('Email já cadastrado.');
+    }
+
     if (
       typeof role !== 'string' ||
       role.trim().length === 0 ||
@@ -38,6 +44,12 @@ async function verifyData(req, resp, next) {
 
     if (!parseCPF(cpf)) {
       throw Error('Não foi possível validar os dados. Verifique o campo cpf.');
+    }
+
+    const cpfExists = await User.findOne({ where: { cpf } });
+
+    if (cpfExists) {
+      throw Error('CPF já cadastrado.');
     }
   } catch (error) {
     const response = ApiResult.parseError(

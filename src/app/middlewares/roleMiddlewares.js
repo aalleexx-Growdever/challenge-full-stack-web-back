@@ -12,29 +12,11 @@ async function verifyData(req, resp, next) {
     ) {
       throw Error('Não foi possível validar os dados. Verifique o campo nome.');
     }
-  } catch (error) {
-    const response = ApiResult.parseError(
-      false,
-      'INVALID_DATA_PARAMS',
-      error.message ? error.message : error,
-      'Dados fornecidos para cadastro inválidos.',
-      Error
-    );
-
-    return resp.status(ApiResult.BAD_REQUEST).json(response);
-  }
-
-  return next();
-}
-
-async function verifyUniqueData(req, resp, next) {
-  try {
-    const { name } = req.body;
 
     const exists = await Role.findOne({ where: { name } });
 
     if (exists) {
-      throw Error('Função já registrada com este nome.');
+      throw Error('Função já registrada.');
     }
   } catch (error) {
     const response = ApiResult.parseError(
@@ -113,4 +95,4 @@ async function verifyIDParam(req, resp, next) {
   return next();
 }
 
-export { verifyData, verifyUniqueData, verifyQueryParams, verifyIDParam };
+export { verifyData, verifyQueryParams, verifyIDParam };
