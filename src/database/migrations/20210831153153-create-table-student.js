@@ -4,9 +4,10 @@ module.exports = {
       'students',
       {
         academic_record: {
-          type: Sequelize.DataTypes.UUID,
+          type: Sequelize.DataTypes.INTEGER,
           allowNull: false,
           primaryKey: true,
+          unique: true,
         },
         name: {
           type: Sequelize.DataTypes.STRING,
