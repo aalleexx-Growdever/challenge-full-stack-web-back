@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Class extends Model {
+class Course extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -19,7 +19,7 @@ class Class extends Model {
       {
         sequelize,
         schema: 'challenge',
-        tableName: 'classes',
+        tableName: 'courses',
       }
     );
 
@@ -28,9 +28,9 @@ class Class extends Model {
 
   static associate(models) {
     this.hasMany(models.Enrollment, {
-      as: 'class_enrollments',
+      as: 'course_enrollments',
       sourceKey: 'course',
-      foreignKey: 'class',
+      foreignKey: 'course',
     });
   }
 
@@ -46,4 +46,4 @@ class Class extends Model {
   }
 }
 
-export default Class;
+export default Course;

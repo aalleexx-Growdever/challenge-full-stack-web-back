@@ -10,11 +10,11 @@ class Enrollment extends Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        class: {
+        course: {
           type: Sequelize.DataTypes.STRING,
           allowNull: false,
           references: {
-            model: 'classes',
+            model: 'courses',
             key: 'course',
           },
         },
@@ -44,22 +44,22 @@ class Enrollment extends Model {
       targetKey: 'cpf',
     });
 
-    this.belongsTo(models.Class, {
-      as: 'enrollment_class',
-      foreignKey: 'class',
+    this.belongsTo(models.Course, {
+      as: 'enrollment_course',
+      foreignKey: 'course',
       targetKey: 'course',
     });
   }
 
   static parseConditions(data) {
-    const { class_course, student_cpf } = data;
+    const { course, student_cpf } = data;
 
     const conditions = {};
 
-    if (class_course) {
-      conditions.class = class_course;
+    if (course) {
+      conditions.class = course;
     }
-    if (class_course) {
+    if (course) {
       conditions.student_cpf = student_cpf;
     }
 

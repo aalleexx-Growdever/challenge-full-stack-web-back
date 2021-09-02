@@ -1,7 +1,7 @@
-import Role from './Role';
-import User from './User';
-import Student from './Student';
-import Class from './Class';
+import Course from './Course';
 import Enrollment from './Enrollment';
+import Role from './Role';
+import Student from './Student';
+import User from './User';
 
-export default [Role, User, Student, Class, Enrollment];
+export default [Course, Enrollment, Role, Student, User];

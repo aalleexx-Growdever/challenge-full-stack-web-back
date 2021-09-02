@@ -9,11 +9,11 @@ module.exports = {
           primaryKey: true,
           autoIncrement: true,
         },
-        class: {
+        course: {
           type: Sequelize.DataTypes.STRING,
           allowNull: false,
           references: {
-            model: 'classes',
+            model: 'courses',
             key: 'course',
           },
         },
