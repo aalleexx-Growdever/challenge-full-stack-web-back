@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import routers from './routers';
-import '../database';
+import routers from './app/routers';
+import './database';
 
 class App {
   constructor() {
