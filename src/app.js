@@ -18,7 +18,7 @@ class App {
     this.server.use(cors());
 
     dotenv.config({
-      path: process.env.NODE_ENV === 'test' ? './../.env.test' : './../.env',
+      path: process.env.NODE_ENV === 'test' ? './.env.test' : './.env',
     });
   }
 
