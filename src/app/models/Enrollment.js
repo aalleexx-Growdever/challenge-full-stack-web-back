@@ -57,9 +57,9 @@ class Enrollment extends Model {
     const conditions = {};
 
     if (course) {
-      conditions.class = course;
+      conditions.course = course;
     }
-    if (course) {
+    if (student_cpf) {
       conditions.student_cpf = student_cpf;
     }
 
