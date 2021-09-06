@@ -31,4 +31,4 @@ async function verifyData(req, resp, next) {
   return next();
 }
 
-export default { verifyData };
+export { verifyData };
