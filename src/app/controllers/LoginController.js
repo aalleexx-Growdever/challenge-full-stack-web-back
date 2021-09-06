@@ -8,7 +8,6 @@ class LoginController {
 
       const user = await User.findOne({
         where: { email },
-        attributes: ['id', 'name', 'role'],
       });
 
       if (!user) {
@@ -21,7 +20,13 @@ class LoginController {
 
       const response = ApiResult.parseResult(
         true,
-        { user },
+        {
+          user: {
+            id: user.id,
+            name: user.name,
+            role: user.role,
+          },
+        },
         'Login realizado com sucesso.'
       );
 
