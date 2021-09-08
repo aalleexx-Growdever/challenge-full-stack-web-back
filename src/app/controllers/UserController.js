@@ -48,7 +48,15 @@ class UserController {
 
       const response = ApiResult.parseResult(
         true,
-        { user },
+        {
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            cpf: user.cpf,
+            role: user.role,
+          },
+        },
         'Usuário retornado com sucesso.'
       );
 
