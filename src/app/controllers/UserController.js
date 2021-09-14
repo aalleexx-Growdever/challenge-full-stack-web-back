@@ -12,7 +12,7 @@ class UserController {
         where: conditions,
         limit,
         offset: (page - 1) * limit,
-        attributes: ['id', 'name', 'role'],
+        attributes: ['id', 'name', 'role', 'email', 'cpf'],
       });
 
       const data = {
