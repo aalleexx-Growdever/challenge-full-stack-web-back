@@ -4,6 +4,7 @@ import {
   verifyData,
   verifyQueryParams,
   verifyARParam,
+  verifyEditedData,
 } from '../middlewares/studentMiddlewares';
 
 const routes = new Router();
@@ -13,7 +14,7 @@ routes.get('/students/:academic_record', verifyARParam, StudentController.show);
 routes.post('/students', verifyData, StudentController.store);
 routes.put(
   '/students/:academic_record',
-  [verifyARParam, verifyData],
+  [verifyARParam, verifyEditedData],
   StudentController.update
 );
 routes.delete(

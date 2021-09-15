@@ -3,6 +3,7 @@ import app from '../../src/app';
 import Student from '../../src/app/models/Student';
 
 describe('students', () => {
+  jest.setTimeout(60000);
   describe('post', () => {
     it('should create a new student with correct params', async () => {
       expect.assertions(2);
@@ -174,7 +175,6 @@ describe('students', () => {
         '/students?email=student@email.com'
       );
 
-
       expect(response.status).toBe(200);
     });
 
@@ -247,6 +247,21 @@ describe('students', () => {
         name: 'Updated Student',
         email: 'updatedstudent@email.com',
         cpf: '012.342.745-01',
+      });
+
+      expect(response.status).toBe(204);
+    });
+
+    it('should update a student data with correct params by AR param but without CPF data', async () => {
+      expect.assertions(1);
+
+      const student = await Student.findOne();
+
+      const ar = student.academic_record;
+
+      const response = await request(app).put(`/students/${ar}`).send({
+        name: 'Updated Student',
+        email: 'asdsupdatedstudent@email.com',
       });
 
       expect(response.status).toBe(204);
