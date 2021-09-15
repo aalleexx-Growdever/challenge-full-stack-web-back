@@ -65,6 +65,68 @@ async function verifyData(req, resp, next) {
 
   return next();
 }
+async function verifyEditedData(req, resp, next) {
+  try {
+    const { name, email, cpf, role } = req.body;
+    const id = parseInt(req.params.id, 10);
+
+    if (
+      typeof name !== 'string' ||
+      name.trim().length === 0 ||
+      /[0-9]+/.test(name)
+    ) {
+      throw Error('Não foi possível validar os dados. Verifique o campo nome.');
+    }
+
+    if (!parseEmail(email)) {
+      throw Error(
+        'Não foi possível validar os dados. Verifique o campo email.'
+      );
+    }
+
+    const emailExists = await User.findOne({ where: { email } });
+
+    if (emailExists) {
+      if (emailExists.id !== id) {
+        throw Error('Email já cadastrado.');
+      }
+    }
+
+    if (
+      typeof role !== 'string' ||
+      role.trim().length === 0 ||
+      /[0-9]+/.test(role)
+    ) {
+      throw Error(
+        'Não foi possível validar os dados. Verifique o campo função.'
+      );
+    }
+
+    if (!parseCPF(cpf)) {
+      throw Error('Não foi possível validar os dados. Verifique o campo cpf.');
+    }
+
+    const cpfExists = await User.findOne({ where: { cpf } });
+
+    if (cpfExists) {
+      if (cpfExists.id !== id) {
+        throw Error('CPF já cadastrado.');
+      }
+    }
+  } catch (error) {
+    const response = ApiResult.parseError(
+      false,
+      'INVALID_DATA_PARAMS',
+      error.message ? error.message : error,
+      'Dados fornecidos para cadastro inválidos.',
+      Error
+    );
+
+    return resp.status(ApiResult.BAD_REQUEST).json(response);
+  }
+
+  return next();
+}
 
 async function verifyQueryParams(req, resp, next) {
   try {
@@ -172,4 +234,4 @@ async function verifyIDParam(req, resp, next) {
   return next();
 }
 
-export { verifyData, verifyQueryParams, verifyIDParam };
+export { verifyData, verifyQueryParams, verifyIDParam, verifyEditedData };

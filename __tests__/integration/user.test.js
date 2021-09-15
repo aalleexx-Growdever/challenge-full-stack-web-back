@@ -2,6 +2,7 @@ import request from 'supertest';
 import app from '../../src/app';
 
 describe('users', () => {
+  jest.setTimeout(40000);
   describe('post', () => {
     it('should create a new user with correct params', async () => {
       expect.assertions(2);
@@ -292,6 +293,19 @@ describe('users', () => {
         cpf: '034.012.012-01',
         role: 'Admin',
         password: 'newpassword',
+      });
+
+      expect(response.status).toBe(204);
+    });
+
+    it('should update an user data with correct params but without password', async () => {
+      expect.assertions(1);
+
+      const response = await request(app).put('/users/1').send({
+        name: 'New Admin',
+        email: 'newemail@email.com',
+        cpf: '034.012.012-01',
+        role: 'Admin',
       });
 
       expect(response.status).toBe(204);
