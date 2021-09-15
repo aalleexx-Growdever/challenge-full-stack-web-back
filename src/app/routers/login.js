@@ -4,6 +4,6 @@ import { verifyData } from '../middlewares/loginMiddlewares';
 
 const routes = new Router();
 
-routes.get('/login', verifyData, LoginController.index);
+routes.post('/login', verifyData, LoginController.index);
 
 export default routes;
